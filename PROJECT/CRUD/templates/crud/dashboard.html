@@ -1,0 +1,10 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div>
+        <h2>Welcome {{user.is_authenticated}}</h2>
+    </div>
+{% endblock %}
