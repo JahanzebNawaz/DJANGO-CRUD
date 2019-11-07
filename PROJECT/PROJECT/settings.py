@@ -137,4 +137,4 @@ LOGIN_URL = 'index'
 #     STRIPE_PUBLISHABLE_KEY = ''
 #     STRIPE_SECRET_KEY = ''
 
-django_heroku.settngs(locals())
+django_heroku.settings(locals())
