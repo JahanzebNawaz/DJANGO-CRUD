@@ -8,8 +8,7 @@
         <div class="card-body">
           <h4 class="card-title">Name: <span>{{user.username}}</span></h4>
           <p class="card-text">Email: <span>{{user.email}}</span></p>
-          <p>{{ user.image.url }}</p>
-          <!-- <a href="" class="btn btn-primary">See Profile</a> -->
+                    
         </div>
       </div>
 
@@ -34,11 +33,13 @@
                   <fieldset class="form-group">
                       
                       {{user_form | crispy }}
-                      {{profile_form | crispy }}
+
+                      {{ profile_form | crispy }}
+
                   </fieldset>
   
                   <div class="form-group">
-                          <input type="submit" class="btn btn-block btn-dark text-white font-weight-bold" value="Update">
+                        <input type="submit" class="btn btn-block btn-dark text-white font-weight-bold" value="Update">
                   </div>
               </form>
               

@@ -1,0 +1,35 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row mb-2">
+            {% for blog in blog_list.all %}
+                  <a href="{% url 'bloglist' blog.id %}" class="text-deco">
+                      <div class="card bg-white shadow p-2 rounded">
+                          <div class="row no-gutters">
+                              <div class="col-md-4">
+                                  <img src="{{ blog.image.url }}" class=" img-fluid"  style="max-width:240px;" alt="Cadson college of pharmacy" />
+                              </div>
+                              <div class="col-md-8">
+                                  <div class="card-body ">
+                                      <h4>{{ blog.blog_title }} </h4>
+                                      <span>{{ blog.date_pretty }}</span>
+                                      <p class="lead text-dark ">{{ blog.summary | safe }}</p>
+                                      <p class="lead">
+                                        <a href="{% url 'blogupdate' blog.id %}" class="btn btn-primary">Edit</a>
+                                        <a href="{% url 'blogdelete' blog.id %}" class="btn btn-danger">Delete</a>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                  </a>
+              {% endfor %}
+            
+          </div>
+    </div>
+{% endblock %}

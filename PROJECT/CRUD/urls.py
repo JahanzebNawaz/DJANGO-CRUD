@@ -8,7 +8,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='crud/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='crud/logout.html'), name='logout'),
     # after login urls
-    path('dahboard/', dashboard, name='dashboard'),
+    path('dashboard/', dashboard, name='dashboard'),
     path('profile/', profile, name='profile'),
 ]
 
