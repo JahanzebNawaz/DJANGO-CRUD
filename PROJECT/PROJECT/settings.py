@@ -138,4 +138,7 @@ LOGIN_URL = 'index'
 #     STRIPE_PUBLISHABLE_KEY = ''
 #     STRIPE_SECRET_KEY = ''
 
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 django_heroku.settings(locals())
