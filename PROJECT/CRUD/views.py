@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from .models import Courses
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -22,7 +24,10 @@ def register(request):
     registration_form = UserRegistrationForm()
 
     if request.method == 'POST':
-        registration_form = UserRegistrationForm(request.POST)
+        try:
+            registration_form = UserRegistrationForm(request.POST)
+        except UserRegistrationForm.DoesNotExist():
+            return HttpResponse('Error getting form')
         if registration_form.is_valid():
             registration_form.save()
             username = registration_form.cleaned_data.get('username')
@@ -39,8 +44,14 @@ def dashboard(request):
     '''
         Main Home Page after login
     '''
+    
     tempalte_url = 'crud/dashboard.html'
-    return render(request, tempalte_url)
+    try:
+        courses = Courses.objects.all()
+    except Courses.DoesNotExist():
+        return HttpResponse("No Such Model found.")
+
+    return render(request, tempalte_url, {'courses': courses})
 
 
 @login_required(login_url='/login/')
@@ -49,8 +60,11 @@ def profile(request):
         User Profile Page
     '''
     if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        try:
+            user_form = UserUpdateForm(request.POST, instance=request.user)
+            profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        except UserUpdateForm.DoesNotExist() or ProfileUpdateForm.DoesNotExist():
+            return HttpResponse('Error getting forms')
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
@@ -68,3 +82,6 @@ def profile(request):
     }
     tempalte_url = 'crud/profile.html'
     return render(request, tempalte_url, context)
+
+
+

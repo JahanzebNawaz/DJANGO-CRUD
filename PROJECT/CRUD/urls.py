@@ -10,5 +10,7 @@ urlpatterns = [
     # after login urls
     path('dashboard/', dashboard, name='dashboard'),
     path('profile/', profile, name='profile'),
+
+    # courses
 ]
 

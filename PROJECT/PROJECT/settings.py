@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -128,3 +129,12 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'index'
+
+# if DEBUG:
+#     STRIPE_PUBLISHABLE_KEY = ''
+#     STRIPE_SECRET_KEY = ''
+# else:
+#     STRIPE_PUBLISHABLE_KEY = ''
+#     STRIPE_SECRET_KEY = ''
+
+django_heroku.settngs(locals())
