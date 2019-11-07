@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, register, dashboard
+from .views import index, register, dashboard, profile
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -9,4 +9,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='crud/logout.html'), name='logout'),
     # after login urls
     path('dahboard/', dashboard, name='dashboard'),
+    path('profile/', profile, name='profile'),
 ]
+

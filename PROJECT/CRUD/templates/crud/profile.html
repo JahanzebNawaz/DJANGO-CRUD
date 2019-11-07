@@ -1,0 +1,16 @@
+{% extends 'crud/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <div class="card w-50 mx-auto" >
+        <img class="card-img-top" src="{{ user.profile.image.url }}" alt="Card image">
+        <div class="card-body">
+          <h4 class="card-title">Name: <span>{{user.username}}</span></h4>
+          <p class="card-text">Email: <span>{{user.email}}</span></p>
+          <p>{{ user.profile.image.url }}</p>
+          <a href="" class="btn btn-primary">See Profile</a>
+        </div>
+      </div>
+    
+{% endblock %}
